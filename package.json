@@ -1,0 +1,36 @@
+{
+  "name": "food-ordering-system",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "redis": "redis-server ./backend/src/redis/redis.conf",
+    "start": "concurrently -k \"cross-env NODE_ENV=production npm run redis\" \"cross-env NODE_ENV=production npm run start --prefix backend\" \"sleep 1 && cross-env NODE_ENV=production npm run start --prefix frontend\"",
+    "network": "concurrently -k \"cross-env NODE_ENV=network npm run redis\" \"cross-env NODE_ENV=network npm run network --prefix backend\" \"sleep 1 && cross-env NODE_ENV=network npm run network --prefix frontend\"",
+    "dev": "concurrently -k \"cross-env NODE_ENV=development npm run redis\" \"cross-env NODE_ENV=development npm run dev --prefix backend\" \"sleep 1 && cross-env NODE_ENV=development npm run dev --prefix frontend\"",
+    "build": "npm run build --prefix backend && npm run build --prefix frontend",
+    "test": "concurrently -k \"npm run test --prefix backend\" \"npm run test --prefix frontend\"",
+    "lint": "concurrently -k \"npm run lint --prefix backend\" \"npm run lint --prefix frontend\"",
+    "format": "concurrently -k \"npm run format --prefix backend\" \"npm run format --prefix frontend\"",
+    "clean": "concurrently -k \"npm run clean --prefix backend\" \"npm run clean --prefix frontend\"",
+    "create-database": "node create-database.js",
+    "create-database:dev": "cross-env NODE_ENV=development node create-database.js"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.4.1-nightly.20240914",
+    "concurrently": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "rimraf": "^6.0.1",
+    "vite": "^5.4.7"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
+    "react-redux": "^9.1.2",
+    "redux": "^5.0.1",
+    "redux-persist": "^6.0.0"
+  }
+}
