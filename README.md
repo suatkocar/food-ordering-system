@@ -23,7 +23,7 @@ The Food Ordering System is a full-stack web application designed to enhance the
 ## Technologies Used
 
 - **Backend**: Node.js, Express.js, MySQL, Redis
-- **Frontend**: React.js (v18.3.1), Material-UI, Vite
+- **Frontend**: React.js (v18.3.1), Material-UI, Vite, Redux
 - **Real-Time Communication**: WebSocket
 - **Development Tools**: Visual Studio Code, Postman, TablePlus, Git, PM2
 
